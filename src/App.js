@@ -1,9 +1,10 @@
 import './App.css';
+import Visualizer from './sorting/visualizer/Visualizer';
 
 function App() {
   return (
     <div className="app">
-      <h1>Sorting Visualizer</h1>
+      <Visualizer/>
     </div>
   );
 }
