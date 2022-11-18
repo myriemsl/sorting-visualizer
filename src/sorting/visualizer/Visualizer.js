@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { mergeSortAlgorithm } from '../algorithms/mergeSort';
+import { quickSortAlgorithm } from '../algorithms/quickSort';
 
 const arrayColor = 'rgb(184, 153, 224)';
 const auxiliaryArrayColor = 'rgb(45, 31, 63)';
@@ -51,6 +52,39 @@ const Visualizer = () => {
         }
     }
 
+
+    const quickSort = () => {
+        const animations = quickSortAlgorithm(primaryArray);
+        for (let i = 0; i < animations.length - 1; i++) {
+            const sortArray = document.getElementsByClassName('sort-array');
+            const changeColor = i % 6 === 0 || i % 6 === 1;
+            if (changeColor === true) {
+                const color = i % 6 === 0 ? auxiliaryArrayColor : arrayColor;
+                const [firstArrayIndex, secondArrayIndex] = animations[i];
+                if (firstArrayIndex === -1) {
+                    continue;
+                };
+                const firstArrayStyle = sortArray[firstArrayIndex].style;
+                const secondArrayStyle = sortArray[secondArrayIndex].style;
+                setTimeout(() => {
+                    firstArrayStyle.background = color;
+                    secondArrayStyle.background = color;
+                }, i * 1);
+            } else {
+                const [arrayIndex, newHeight] = animations[i];
+                if (arrayIndex === -1) {
+                    continue;
+                }
+                const arrayStyle = sortArray[arrayIndex].style;
+                setTimeout(() => {
+                    arrayStyle.height = `${newHeight}px`
+                }, i * 1)
+            }
+        }
+ 
+    }
+
+
   return (
     <div className='container'>
         {primaryArray &&
@@ -63,6 +97,7 @@ const Visualizer = () => {
         <div className='functions-buttons'>
             <button className='reset' onClick={resetArray}>Reset</button>
             <button className='sort' onClick={mergeSort}>Merge Sort</button>
+            <button className='sort' onClick={quickSort}>Quick Sort</button>
         </div>
     </div>
   )
