@@ -1,7 +1,7 @@
 export function mergeSortAlgorithm (array) {
-    const animations = [];
+    let animations = [];
     if (array.length <= 1) return array;
-    const auxArray = array.slice();
+    let auxArray = array.slice();
     sortingHelper(array, 0, array.length - 1, auxArray, animations)
     return animations;
 } 

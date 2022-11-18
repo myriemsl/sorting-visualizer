@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { mergeSortAlgorithm } from '../algorithms/mergeSort';
 import { quickSortAlgorithm } from '../algorithms/quickSort';
+import {bubbleSortAlgorithm } from '../algorithms/bubbleSort';
 
 const arrayColor = 'rgb(184, 153, 224)';
 const auxiliaryArrayColor = 'rgb(45, 31, 63)';
@@ -85,6 +86,34 @@ const Visualizer = () => {
     }
 
 
+    const bubbleSort = () => {
+        const animations = bubbleSortAlgorithm(primaryArray);
+        for (let i = 0; i < animations.length; i++) {
+            const changeColor = i % 4 === 0 || i % 4 === 1;
+            const sortArray = document.getElementsByClassName('sort-array');
+            if (changeColor) {
+                const [firstArrayIndex, secondArrayIndex] = animations[i];
+                const firstArrayStyle = sortArray[firstArrayIndex].style;
+                const secondArrayStyle = sortArray[secondArrayIndex].style;
+                const color = i % 4 === 0 ? auxiliaryArrayColor : arrayColor;
+                setTimeout(() => {
+                    firstArrayStyle.background = color;
+                    secondArrayStyle.background = color;
+                }, i * 1);
+            } else {
+                const [arrayIndex, newHeight] = animations[i];
+                if (arrayIndex === -1) {
+                    continue;
+                }
+                const arrayStyle = sortArray[arrayIndex].style;
+                setTimeout(() => {
+                    arrayStyle.height = `${newHeight}px`
+                }, i * 1);
+            }
+        }
+    }
+
+
   return (
     <div className='container'>
         {primaryArray &&
@@ -98,6 +127,7 @@ const Visualizer = () => {
             <button className='reset' onClick={resetArray}>Reset</button>
             <button className='sort' onClick={mergeSort}>Merge Sort</button>
             <button className='sort' onClick={quickSort}>Quick Sort</button>
+            <button className='sort' onClick={bubbleSort}>Bubble Sort</button>
         </div>
     </div>
   )

@@ -48,9 +48,9 @@ function partitionArray(auxArray, startIdx, endIdx, animations) {
     return k;
 }
 
-function swap(aux, i, j) {
-    let t = aux[i];
-    aux[i] = aux[j];
-    aux[j] = t;
+function swap(aux, a, b) {
+    let t = aux[a];
+    aux[a] = aux[b];
+    aux[b] = t;
 }
 
