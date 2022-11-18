@@ -12,3 +12,21 @@
   width: 2px;
   display: inline-block;
 }
+
+.functions-buttons button {
+  margin: 0.2em;
+  height: 2em;
+  width: 7em;
+  border: 0.2em;
+  border: 1px solid rgb(45, 31, 63);
+}
+
+.reset {
+  background-color: white;
+  color: rgb(45, 31, 63);
+}
+
+.sort {
+  color: white;
+  background-color: rgb(45, 31, 63);
+}
